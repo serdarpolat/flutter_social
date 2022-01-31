@@ -1,6 +1,4 @@
-# social
-
-A new Flutter project.
+<img src="Social.png" width="400" style="padding: 16px"/>
 
 ## Getting Started
 
