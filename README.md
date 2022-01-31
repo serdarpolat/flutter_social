@@ -1,4 +1,4 @@
-<img src="Social.png" width="400" style="padding: 16px"/>
+<img src="Social..png"/>
 
 ## Getting Started
 
