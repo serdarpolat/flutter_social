@@ -9,8 +9,10 @@ class PostItem extends StatelessWidget {
   const PostItem({
     Key? key,
     required this.postModel,
+    this.onTap,
   }) : super(key: key);
   final PostModel postModel;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +28,18 @@ class PostItem extends StatelessWidget {
           PostItemHeader(
             postModel: postModel,
           ),
-          SizedBox(height: Sizes.h(context, 16)),
-          if (postModel.title != null) PostTypeText(postModel: postModel),
-          if (postModel.images != null) PostTypeMedia(postModel: postModel),
-          SizedBox(height: Sizes.h(context, 16)),
+          InkWell(
+            onTap: onTap,
+            child: Column(
+              children: [
+                SizedBox(height: Sizes.h(context, 16)),
+                if (postModel.title != null) PostTypeText(postModel: postModel),
+                if (postModel.images != null)
+                  PostTypeMedia(postModel: postModel),
+                SizedBox(height: Sizes.h(context, 16)),
+              ],
+            ),
+          ),
           PostItemActions(),
         ],
       ),
