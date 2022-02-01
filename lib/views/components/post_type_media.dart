@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:social/core/core_files.dart';
@@ -24,7 +25,7 @@ class _PostTypeMediaState extends State<PostTypeMedia> {
           height: Sizes.h(context, 236),
           child: CarouselSlider(
             options: CarouselOptions(
-                height: 214,
+                height: 250,
                 aspectRatio: 16 / 9,
                 viewportFraction: 0.85,
                 reverse: false,
@@ -43,12 +44,18 @@ class _PostTypeMediaState extends State<PostTypeMedia> {
                     borderRadius: BorderRadius.circular(
                       Sizes.h(context, 16),
                     ),
-                    child: SizedBox(
+                    child: CachedNetworkImage(
+                      imageUrl: i,
                       width: Sizes.w(context, 327),
-                      child: Image.network(
-                        i,
-                        fit: BoxFit.cover,
-                      ),
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress),
+                        );
+                      },
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   );
                 },
@@ -58,7 +65,7 @@ class _PostTypeMediaState extends State<PostTypeMedia> {
         ),
         if (widget.postModel.images != null &&
             widget.postModel.images!.length > 1)
-          SizedBox(height: Sizes.h(context, 16)),
+          SizedBox(height: Sizes.h(context, 10)),
         if (widget.postModel.images != null &&
             widget.postModel.images!.length > 1)
           Row(

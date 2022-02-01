@@ -14,6 +14,9 @@ class ApplicationProvider {
   List<SingleChildWidget> dependItems = [
     ChangeNotifierProvider(
       create: (context) => PageProvider(),
-    )
+    ),
+    ChangeNotifierProvider(
+      create: (context) => SearchProvider(),
+    ),
   ];
 }

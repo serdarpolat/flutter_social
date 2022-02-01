@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:social/core/core_files.dart';
 
@@ -16,6 +17,21 @@ class StoryItem extends StatelessWidget {
       height: Sizes.h(context, 140),
       child: Stack(
         children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(
+              Sizes.h(context, 16),
+            ),
+            child: CachedNetworkImage(
+              imageUrl: storyItem.story,
+              width: Sizes.h(context, 100),
+              height: Sizes.h(context, 140),
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress)),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+          ),
           Container(
             width: Sizes.h(context, 100),
             height: Sizes.h(context, 140),
@@ -36,12 +52,6 @@ class StoryItem extends StatelessWidget {
         ],
       ),
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(
-            storyItem.story,
-          ),
-          fit: BoxFit.cover,
-        ),
         borderRadius: BorderRadius.circular(
           Sizes.h(context, 16),
         ),
@@ -65,15 +75,17 @@ class StoryItemUserImage extends StatelessWidget {
         padding: EdgeInsets.all(Sizes.h(context, 2)),
         child: Container(
           padding: EdgeInsets.all(Sizes.h(context, 2)),
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  userImg,
-                ),
-                fit: BoxFit.cover,
-              ),
-              shape: BoxShape.circle,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(40),
+            child: CachedNetworkImage(
+              imageUrl: userImg,
+              progressIndicatorBuilder: (context, url, downloadProgress) {
+                return Center(
+                  child: CircularProgressIndicator(
+                      value: downloadProgress.progress),
+                );
+              },
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
           decoration: BoxDecoration(
