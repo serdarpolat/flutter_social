@@ -4,6 +4,7 @@ class Clr {
   Clr._();
 
   static const Color darkBlack = Color(0xff181A1C);
+  static const Color black = Color(0xff000000);
   static const LinearGradient gradient = LinearGradient(
     colors: [
       Color(0xffF62E8E),

@@ -18,5 +18,8 @@ class ApplicationProvider {
     ChangeNotifierProvider(
       create: (context) => SearchProvider(),
     ),
+    ChangeNotifierProvider(
+      create: (context) => ProfileProvider(),
+    ),
   ];
 }

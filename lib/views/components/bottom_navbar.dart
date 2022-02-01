@@ -56,7 +56,7 @@ class BottomNavbar extends StatelessWidget {
           ],
         ),
         decoration: BoxDecoration(
-          color: Clr.darkBlack,
+          color: Clr.black,
           border: Border(
             top: BorderSide(
               color: Clr.gray,
